@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1885ed">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Entry Kompensasi</title>
+    <link rel="stylesheet" href="../css/stylee.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo">
+                <a href="../index.html">
+                    <img src="../assets/logoweb.png" alt="">
+                </a>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="header__menu">
+                <nav id="navbar" class="header__nav collapse">
+                    <ul class="header__elenco">
+                        <li class="header__el"><a href="../index.html" class="header__link">Home</a></li>
+                        <li class="header__el"><a href="../kompensasi/data-kompen.html" class="header__link">Data Kompensasi</a></li>
+                        <li class="header__el"><a href="../total/data-total.html" class="header__link">Data Total</a></li>
+                        <li class="header__el"><a href="#contactus" class="header__link">Contact us</a></li>
+                        <li class="header__el header__el--blue"><a href="login.html" class="btn btn--white">Login →</a></li>
+                        <li class="header__el header__el--blue"><a href="register.html" class="btn btn--white">Sign In →</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="form-container__komentry">
+        <h1>Entry Kompen</h1>
+        <form id="formKompen">
+            <label for="nama">Nama Pegawai:</label><br>
+            <input type="text" id="nama" name="nama"><br>
+            <label for="jabatan">Jabatan Pegawai:</label><br>
+            <input type="text" id="jabatan" name="jabatan"><br>
+            <label for="id">ID Pegawai:</label><br>
+            <input type="text" id="id" name="id"><br>
+            <label for="jenis">Jenis Kompensasi:</label><br>
+            <input type="text" id="jenis" name="jenis"><br>
+            <button onclick="addKompen()">Tambah Data</button><br><br>
+            <a href="data-kompen.html" target="_blank">Cek Data</a>
+        </form>
+    </div>
+
+    <script>
+        function addKompen() {
+            var form = document.getElementById("formKompen");
+            var nama = form.elements["nama"].value;
+            var jabatan = form.elements["jabatan"].value;
+            var id = form.elements["id"].value;
+            var jenis = form.elements["jenis"].value;
+
+            // Kirim data ke halaman data-kompen.html
+            var newData = { nama: nama, jabatan: jabatan, id: id, jenis: jenis };
+            localStorage.setItem('newData', JSON.stringify(newData));
+            window.location.href = 'data-kompen.html';
+        }
+    </script>      
+</body>
+</html>

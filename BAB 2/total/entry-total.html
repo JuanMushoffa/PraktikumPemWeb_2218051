@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1885ed">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Data Total - Sakura.id</title>
+    <link rel="stylesheet" href="../css/stylee.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container input[type="text"] {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container .btn {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo">
+                <a href="../index.html">
+                    <img src="../assets/logoweb.png" alt="">
+                </a>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="header__menu">
+                <nav id="navbar" class="header__nav collapse">
+                    <ul class="header__elenco">
+                        <li class="header__el"><a href="../index.html" class="header__link">Home</a></li>
+                        <li class="header__el"><a href="../kompensasi/data-kompen.html" class="header__link">Data Kompensai</a></li>
+                        <li class="header__el"><a href="../total/data-total.html" class="header__link">Data Total</a></li>
+                        <li class="header__el"><a href="#contactus" class="header__link">Contact us</a></li>
+                        <li class="header__el header__el--blue"><a href="login.html" class="btn btn--white">Login →</a></li>
+                        <li class="header__el header__el--blue"><a href="register.html" class="btn btn--white">Sign In →</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="form-container">
+        <h2>Entry Total</h2>
+        <form id="entryForm">
+            <input type="text" id="nama" placeholder="Nama Pegawai"><br>
+            <input type="text" id="jabatan" placeholder="Jabatan Pegawai"><br>
+            <input type="text" id="id" placeholder="ID Pegawai"><br>
+            <input type="text" id="jenis" placeholder="Jenis Kompensasi"><br>
+            <input type="text" id="tunjangan" placeholder="Tunjangan Kompensasi"><br>
+            <input type="text" id="total" placeholder="Total Kompensasi"><br>
+            <button type="submit" class="btn">Simpan</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("entryForm").onsubmit = function(event) {
+            event.preventDefault();
+            var nama = document.getElementById("nama").value;
+            var jabatan = document.getElementById("jabatan").value;
+            var id = document.getElementById("id").value;
+            var jenis = document.getElementById("jenis").value;
+            var tunjangan = document.getElementById("tunjangan").value;
+            var total = document.getElementById("total").value;
+
+            // Simpan data ke localStorage untuk digunakan di halaman data-total.html
+            var newData = { nama: nama, jabatan: jabatan, id: id, jenis: jenis, tunjangan: tunjangan, total: total };
+            localStorage.setItem('newTotalData', JSON.stringify(newData));
+
+            // Redirect ke halaman data-total.html
+            window.location.href = 'data-total.html';
+        };
+    </script>
+</body>
+</html>
