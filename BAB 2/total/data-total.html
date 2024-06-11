@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1885ed">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Data Total - Sakura.id</title>
+    <link rel="stylesheet" href="../css/stylee.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .table-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            display: none;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            max-width: 600px;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #007bff;
+        }
+
+        .popup-content input[type="text"] {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .popup-content .btn {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-content .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo">
+                <a href="../index.html">
+                    <img src="../assets/logoweb.png" alt="">
+                </a>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="header__menu">
+                <nav id="navbar" class="header__nav collapse">
+                    <ul class="header__elenco">
+                        <li class="header__el"><a href="../index.html" class="header__link">Home</a></li>
+                        <li class="header__el"><a href="../kompensasi/data-kompen.html" class="header__link">Data Kompensai</a></li>
+                        <li class="header__el"><a href="../total/data-total.html" class="header__link">Data Total</a></li>
+                        <li class="header__el"><a href="#contactus" class="header__link">Contact us</a></li>
+                        <li class="header__el header__el--blue"><a href="login.html" class="btn btn--white">Login →</a></li>
+                        <li class="header__el header__el--blue"><a href="register.html" class="btn btn--white">Sign In →</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="table-container">
+        <h1>Data Total</h1>
+
+        <!-- Daftar data total -->
+        <table id="listTotal">
+            <thead>
+                <tr>
+                    <th>Nama Pegawai</th>
+                    <th>Jabatan Pegawai</th>
+                    <th>ID Pegawai</th>
+                    <th>Jenis Kompensasi</th>
+                    <th>Tunjangan Kompensasi</th>
+                    <th>Total Kompensasi</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan ditampilkan disini -->
+            </tbody>
+        </table>
+
+        <!-- Button untuk kembali ke halaman entry-total.html -->
+        <div class="btn-container">
+            <button class="btn" onclick="window.location.href='entry-total.html'">Tambah Data</button>
+        </div>
+    </div>
+
+    <div class="popup-container" id="editPopup">
+        <div class="popup-content">
+            <h2>Edit Data</h2>
+            <form id="editForm">
+                <input type="hidden" id="editIndex">
+                <input type="text" id="editNama" placeholder="Nama Pegawai"><br>
+                <input type="text" id="editJabatan" placeholder="Jabatan Pegawai"><br>
+                <input type="text" id="editId" placeholder="ID Pegawai"><br>
+                <input type="text" id="editJenis" placeholder="Jenis Kompensasi"><br>
+                <input type="text" id="editTunjangan" placeholder="Tunjangan Kompensasi"><br>
+                <input type="text" id="editTotal" placeholder="Total Kompensasi"><br>
+                <button type="submit" class="btn">Simpan Perubahan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mengambil data dari localStorage
+        var totalData = JSON.parse(localStorage.getItem('newTotalData'));
+        if (totalData) {
+            var table = document.getElementById('listTotal').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.length);
+
+            // Membuat sel untuk setiap kolom data
+            var cellNama = newRow.insertCell(0);
+            var cellJabatan = newRow.insertCell(1);
+            var cellId = newRow.insertCell(2);
+            var cellJenis = newRow.insertCell(3);
+            var cellTunjangan = newRow.insertCell(4);
+            var cellTotal = newRow.insertCell(5);
+            var cellAction = newRow.insertCell(6);
+
+            // Mengisi data ke dalam sel
+            cellNama.innerHTML = totalData.nama;
+            cellJabatan.innerHTML = totalData.jabatan;
+            cellId.innerHTML = totalData.id;
+            cellJenis.innerHTML = totalData.jenis;
+            cellTunjangan.innerHTML = totalData.tunjangan;
+            cellTotal.innerHTML = totalData.total;
+
+            // Menambahkan tombol edit dan hapus
+            cellAction.innerHTML = '<button class="btn" onclick="editData(this)">Edit</button> <button class="btn" onclick="deleteData(this)">Hapus</button>';
+        }
+
+        function editData(btn) {
+            var row = btn.parentNode.parentNode;
+            var cells = row.getElementsByTagName("td");
+
+            // Mengisi nilai input pada form edit dengan data yang akan di-edit
+            document.getElementById("editIndex").value = row.rowIndex;
+            document.getElementById("editNama").value = cells[0].innerHTML;
+            document.getElementById("editJabatan").value = cells[1].innerHTML;
+            document.getElementById("editId").value = cells[2].innerHTML;
+            document.getElementById("editJenis").value = cells[3].innerHTML;
+            document.getElementById("editTunjangan").value = cells[4].innerHTML;
+            document.getElementById("editTotal").value = cells[5].innerHTML;
+
+            // Menampilkan popup edit
+            document.getElementById("editPopup").style.display = "flex";
+        }
+
+        function deleteData(btn) {
+            var row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            alert("Data berhasil dihapus.");
+        }
+
+        document.getElementById("editForm").onsubmit = function(event) {
+            event.preventDefault();
+            var index = document.getElementById("editIndex").value;
+            var row = document.getElementById("listTotal").rows[index];
+            var cells = row.getElementsByTagName("td");
+
+            // Mengambil nilai input dari form edit
+            var nama = document.getElementById("editNama").value;
+            var jabatan = document.getElementById("editJabatan").value;
+            var id = document.getElementById("editId").value;
+            var jenis = document.getElementById("editJenis").value;
+            var tunjangan = document.getElementById("editTunjangan").value;
+            var total = document.getElementById("editTotal").value;
+
+            // Mengisi kembali data pada tabel dengan data yang telah diedit
+            cells[0].innerHTML = nama;
+            cells[1].innerHTML = jabatan;
+            cells[2].innerHTML = id;
+            cells[3].innerHTML = jenis;
+            cells[4].innerHTML = tunjangan;
+            cells[5].innerHTML = total;
+
+            // Menutup popup edit
+            document.getElementById("editPopup").style.display = "none";
+            alert("Data berhasil diubah.");
+        };
+    </script>
+</body>
+</html>
